@@ -1,103 +1,57 @@
 <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
     <div class="container-fluid">
 
-        <!-- Logo -->
         <a class="navbar-brand" href="/">
             <i class="fa-regular fa-compass"></i>
         </a>
 
-        <!-- Mobile Toggle -->
-        <button
-            class="navbar-toggler"
+        <button class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-        >
+            data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
 
-            <!-- Left Links -->
-<div class="navbar-nav">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/listings">Explore</a>
 
-    <a class="nav-link" href="/">
-        Home
-    </a>
-
-    <a class="nav-link" href="/listings">
-        Explore
-    </a>
-
-    <% if(currentUser){ %>
-
-    <a class="nav-link" href="/mybookings">
-        My Bookings
-    </a>
-
-    <% } %>
-
-</div>
-
-            <!-- Search Bar -->
-            <div class="mx-auto">
-
-                <form
-                    class="d-flex"
-                    action="/listings"
-                    method="GET"
-                    role="search"
-                >
-
-                    <input
-                        class="form-control search-inp me-2"
-                        type="search"
-                        name="search"
-                        placeholder="Search destinations"
-                        value="<%= typeof search !== 'undefined' ? search : '' %>"
-                    >
-
-                    <button class="btn btn-search" type="submit">
-
-                        <i class="fa-solid fa-magnifying-glass"></i>
-
-                        Search
-
-                    </button>
-
-                </form>
-
+                <% if (locals.currentUser) { %>
+                    <a class="nav-link" href="/mybookings">My Bookings</a>
+                <% } %>
             </div>
 
-            <!-- Right Side -->
-            <div class="navbar-nav ms-auto align-items-center">
+            <div class="mx-auto">
+                <form class="d-flex" action="/listings" method="GET">
+                    <input
+                        class="form-control me-2"
+                        type="search"
+                        name="search"
+                        placeholder="Search destinations">
 
-                <!-- Dark Mode -->
-                <i
-                    class="fa-solid fa-moon theme-btn me-3"
-                    id="theme-btn"
-                    title="Dark Mode"
-                ></i>
+                    <button class="btn btn-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Search
+                    </button>
+                </form>
+            </div>
+
+            <div class="navbar-nav ms-auto">
 
                 <a class="nav-link" href="/listings/new">
                     Airbnb your home
                 </a>
 
-                <% if(!currentUser){ %>
+                <% if (!locals.currentUser) { %>
 
-                    <a class="nav-link" href="/signup">
-                        <b>Sign Up</b>
-                    </a>
-
-                    <a class="nav-link" href="/login">
-                        <b>Login</b>
-                    </a>
+                    <a class="nav-link" href="/signup">Sign Up</a>
+                    <a class="nav-link" href="/login">Login</a>
 
                 <% } else { %>
 
-                    <a class="nav-link" href="/logout">
-                        <b>Logout</b>
-                    </a>
+                    <a class="nav-link" href="/logout">Logout</a>
 
                 <% } %>
 
